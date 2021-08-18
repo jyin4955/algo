@@ -3,7 +3,7 @@
 def test1():
     l = []
     for i in range(1000):
-        l = l + i
+        l = l + [i]
 def test2():
     l = []
     for i in range(1000):
