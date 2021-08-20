@@ -30,11 +30,11 @@ def infixTOPostfix(infixexpr):
     prec['('] = 1 # 为什么左括号的优先级为1?
     opstack = Stack()
     postfixList = []
-    #tokenList = infixexpr.split()
+    tokenList = infixexpr.split()
     i = 0
-    while i < len(infixexpr):
-        token = infixexpr[i]
-        print(token)
+    while i < len(tokenList):
+        token = tokenList[i]
+        #print(token)
         if token == '(':
             opstack.push(token)
         elif token == ')':
@@ -46,9 +46,9 @@ def infixTOPostfix(infixexpr):
 
             while not opstack.isEmpty() and prec[token] < prec[opstack.peek()]: # 什么时候要'='
                 postfixList.append(opstack.pop())
-
             opstack.push(token)
-        else:
+
+        elif token in '0123456789' or 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
             postfixList.append(token)
         i += 1
 #中缀表达式单词列表扫描结束后，把opstack栈中的所有剩余操作符依次弹出，添加到输出列表末尾
@@ -58,7 +58,10 @@ def infixTOPostfix(infixexpr):
 
     return " ".join(postfixList)
 
-print(infixTOPostfix('(A+B)*C'))
-print(infixTOPostfix('A*B+C*D'))
-print(infixTOPostfix("(A+B)*C-(D-E)*(F+G)"))
+
+
+if __name__ == '__main__':
+    print(infixTOPostfix(' ( A + B ) * C '))
+    print(infixTOPostfix(' A * B + C * D '))
+    print(infixTOPostfix(" ( A + B ) * C - ( D - E ) * ( F + G ) "))
 # 'str' object is not callable
