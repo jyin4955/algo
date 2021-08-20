@@ -44,7 +44,7 @@ def infixTOPostfix(infixexpr):
         elif token in "+-*/":
             #先乘除后加减， 优先级高的先弹出. 再入栈
 
-            while not opstack.isEmpty() and prec[token] < prec[opstack.peek()]:
+            while not opstack.isEmpty() and prec[token] < prec[opstack.peek()]: # 什么时候要'='
                 postfixList.append(opstack.pop())
 
             opstack.push(token)
